@@ -1,0 +1,151 @@
+<mujoco model="dummy">
+    <compiler angle="radian" meshdir="../meshes/" autolimits="true"/>
+    <option gravity="0 0 -9.81" integrator="implicitfast" timestep="0.001"/>
+    <size njmax="500" nconmax="100"/>
+
+    <default>
+        <default class="dummy">
+            <material specular="0.5" shininess="0.25"/>
+            <joint armature="0.1" damping="2" axis="0 0 1" range="-3 3"/>
+            <general dyntype="none" biastype="affine" ctrlrange="-3 3" forcerange="-87 87"/>
+            <default class="finger">
+                <joint axis="0 1 0" type="slide" range="0 0.04"/>
+            </default>
+            <default class="visual">
+                <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+            </default>
+            <default class="collision">
+                <geom type="mesh" group="3"/>
+            </default>
+        </default>
+    </default>
+
+    <asset>
+        <material class="dummy" name="white" rgba="1 1 1 1"/>
+        <material class="dummy" name="off_white" rgba="0.901961 0.921569 0.929412 1"/>
+        <material class="dummy" name="black" rgba="0.25 0.25 0.25 1"/>
+        <material class="dummy" name="green" rgba="0 1 0 1"/>
+        <material class="dummy" name="light_blue" rgba="0.039216 0.541176 0.780392 1"/>
+
+        <!-- Collision meshes -->
+        <mesh name="base_link_c" file="base_link.STL"/>
+        <mesh name="shoulder_link_c" file="shoulder_link.STL"/>
+        <mesh name="upper_link_c" file="upper_link.STL"/>
+        <mesh name="forearm_link_c" file="forearm_link.STL"/>
+        <mesh name="wrist1_link_c" file="wrist1_link.STL"/>
+        <mesh name="wrist2_link_c" file="wrist2_link.STL"/>
+        <mesh name="FlexGripper_c" file="FlexGripper.STL"/>
+        <mesh name="finger_left_c" file="finger_left.STL"/>
+        <mesh name="finger_right_c" file="finger_right.STL"/>
+
+        <!-- Visual meshes -->
+        <mesh name="base_link" file="base_link.STL"/>
+        <mesh name="shoulder_link" file="shoulder_link.STL"/>
+        <mesh name="upper_link" file="upper_link.STL"/>
+        <mesh name="forearm_link" file="forearm_link.STL"/>
+        <mesh name="wrist1_link" file="wrist1_link.STL"/>
+        <mesh name="wrist2_link" file="wrist2_link.STL"/>
+        <mesh name="FlexGripper" file="FlexGripper.STL"/>
+        <mesh name="finger_left" file="finger_left.STL"/>
+        <mesh name="finger_right" file="finger_right.STL"/>
+    </asset>
+
+    <worldbody>
+        <light name="top" pos="0 0 2" mode="trackcom"/>
+        <body name="base_link" childclass="dummy" pos="0 0 0.015">
+            <inertial mass="0.629769" pos="-0.041018 -0.00014 0.049974"
+                fullinertia="0.00315 0.00388 0.004285 8.2904e-7 0.00015 8.2299e-6"/>
+            <geom mesh="base_link" material="off_white" class="visual"/>
+            <geom mesh="base_link_c" class="collision"/>
+            <body name="shoulder_link" pos="0 0 0.0865">
+                <inertial pos="0.00565647 0.00561557 0.0110368" quat="0.387508 0.747696 -0.00370769 0.539235" mass="0.140771" diaginertia="9.80003e-05 6.54237e-05 3.6246e-05" />
+                <joint name="joint1" pos="0 0 0" axis="0 0 1" limited="true" range="-3 3"/>
+                <geom mesh="shoulder_link" material="white" class="visual"/>
+                <geom mesh="shoulder_link_c" class="collision"/>
+                <body name="upper_link" pos="0.035 0 0.0275" quat="0.707105 -0.707108 0 0">
+                    <inertial pos="0.00158183 -0.0750181 -0.00456731" quat="0.703909 0.710044 -0.0113415 0.0148951" mass="1.43844" diaginertia="0.00507382 0.0050108 0.000464441" />
+                    <joint name="joint2" pos="0 0 0" axis="0 0 1" limited="true" range="-1.3 1.57"/>
+                    <geom mesh="upper_link" material="white" class="visual"/>
+                    <geom mesh="upper_link_c" class="collision"/>
+                    <body name="forearm_link" pos="0 -0.146 0" quat="0.707105 0 0 -0.707108">
+                        <inertial pos="0.0570314 -0.0176298 -0.00275017" quat="0.0639367 0.785682 -0.00195374 0.615315" mass="0.300201" diaginertia="0.000239193 0.000223023 8.0794e-05" />
+                        <joint name="joint3" pos="0 0 0" axis="0 0 1" limited="true" range="-1.3 1.57"/>
+                        <geom mesh="forearm_link" material="white" class="visual"/>
+                        <geom mesh="forearm_link_c" class="collision"/>
+                        <body name="wrist1_link" pos="0.052 -0.0115 0" quat="-2.59734e-06 -2.59735e-06 -0.707108 -0.707105">
+                            <inertial pos="-6.733e-05 0.0004689 0.0783724" quat="0.999228 0.0391533 0.000404462 -0.00305537" mass="0.282519" diaginertia="0.000463971 0.000431674 6.82547e-05" />
+                            <joint name="joint4" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14 3.14"/>
+                            <geom mesh="wrist1_link" material="white" class="visual"/>
+                            <geom mesh="wrist1_link_c" class="collision"/>
+                            <body name="wrist2_link" pos="0 0 0.134" quat="-0.500004 0.499998 0.500002 0.499996">
+                                <inertial pos="0.043953 0 -0.002344" quat="0.462225 0.535115 0.535115 0.462225" mass="0.111687" diaginertia="4.722e-05 4.60318e-05 9.0482e-06" />
+                                <joint name="joint5" pos="0 0 0" axis="0 0 1" limited="true" range="-2.1 2.1"/>
+                                <geom mesh="wrist2_link" material="white" class="visual"/>
+                                <geom mesh="wrist2_link_c" class="collision"/>
+                                <body name="wrist3_link" pos="0.13725 0 0" quat="0.499998 0.5 0.500002 0.5">
+                                    <inertial pos="0.00112758 -0.00037575 -0.0450741" quat="0.71154 0.702369 -0.0182869 0.0073592" mass="0.0269426" diaginertia="8.22185e-06 7.40931e-06 5.00883e-06" />
+                                    <joint name="joint6" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28 6.28"/>
+                                    <geom mesh="FlexGripper" material="white" class="visual"/>
+                                    <geom mesh="FlexGripper_c" class="collision"/>
+                                    <body name="finger_left" pos="0.00025007 0.00925 -0.03825">
+                                        <inertial pos="0.00056483 -0.00903053 -0.00450228" quat="0.763992 0.645108 0.000480029 -0.0123145" mass="0.0300368" diaginertia="1.06119e-05 7.5575e-06 7.26057e-06" />
+                                        <joint name="finger_left_joint" pos="0 0 0" axis="-1 0 0" limited="true" range="0 0.78"/>
+                                        <geom mesh="finger_left" material="white" class="visual"/>
+                                        <geom mesh="finger_left_c" class="collision"/>
+                                    </body>
+                                    <body name="finger_right" pos="0.00025007 -0.00925 -0.03825">
+                                        <inertial pos="0.00056483 0.00925188 -0.00450332" quat="0.723779 0.689939 -0.00125518 -0.0112236" mass="0.0300368" diaginertia="1.06116e-05 7.66037e-06 7.258e-06" />
+                                        <joint name="finger_right_joint" pos="0 0 0" axis="1 0 0" limited="true" range="0 0.78"/>
+                                        <geom mesh="finger_right" material="white" class="visual"/>
+                                        <geom mesh="finger_right_c" class="collision"/>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <tendon>
+        <fixed name="split">
+            <joint joint="finger_left_joint" coef="0.5"/>
+            <joint joint="finger_right_joint" coef="0.5"/>
+        </fixed>
+    </tendon>
+
+    <equality>
+        <joint joint1="finger_right_joint" joint2="finger_left_joint" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+    </equality>
+
+    <!-- <actuator>
+        <general class="dummy" name="actuator1" joint="joint1" gainprm="4500" biasprm="0 -4500 -450" forcerange="-12 12" ctrlrange="-3 3"/>
+        <general class="dummy" name="actuator2" joint="joint2" gainprm="4500" biasprm="0 -4500 -450" forcerange="-7.2 7.2" ctrlrange="-1.3 1.5708"/>
+        <general class="dummy" name="actuator3" joint="joint3" gainprm="3500" biasprm="0 -3500 -350" forcerange="-7.2 7.2" ctrlrange="-1.3 1.5708"/>
+        <general class="dummy" name="actuator4" joint="joint4" gainprm="3500" biasprm="0 -3500 -350" forcerange="-3.6 3.6" ctrlrange="-3.1416 3.1416"/>
+        <general class="dummy" name="actuator5" joint="joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-3.6 3.6" ctrlrange="-2.1 2.1"/>
+        <general class="dummy" name="actuator6" joint="joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-0.6 0.6" ctrlrange="-6.28 6.28"/>
+        <general class="dummy" name="actuator7" joint="finger_left_joint" gainprm="0.01568627451 0 0" biasprm="0 -100 -10" forcerange="-100 100" ctrlrange="0 0.78"/>
+    </actuator> -->
+    <actuator>
+        <general class="dummy" name="actuator1" joint="joint1" gainprm="4500" biasprm="0 -4500 -450" forcerange="-100 100" ctrlrange="-3 3"/>
+        <general class="dummy" name="actuator2" joint="joint2" gainprm="4500" biasprm="0 -4500 -450" forcerange="-100 100" ctrlrange="-1.3 1.5708"/>
+        <general class="dummy" name="actuator3" joint="joint3" gainprm="3500" biasprm="0 -3500 -350" forcerange="-100 100" ctrlrange="-1.3 1.5708"/>
+        <general class="dummy" name="actuator4" joint="joint4" gainprm="3500" biasprm="0 -3500 -350" forcerange="-100 100" ctrlrange="-3.1416 3.1416"/>
+        <general class="dummy" name="actuator5" joint="joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-100 100" ctrlrange="-2.1 2.1"/>
+        <general class="dummy" name="actuator6" joint="joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-100 100" ctrlrange="-6.28 6.28"/>
+        <general class="dummy" name="actuator7" joint="finger_left_joint" gainprm="2000" biasprm="0 -2000 -200" forcerange="-100 100" ctrlrange="0 0.78"/>
+    </actuator>
+
+    <contact>
+        <exclude body1="base_link" body2="shoulder_link"/>
+        <exclude body1="shoulder_link" body2="upper_link"/>
+        <exclude body1="upper_link" body2="forearm_link"/>
+        <exclude body1="forearm_link" body2="wrist1_link"/>
+        <exclude body1="wrist1_link" body2="wrist2_link"/>
+        <exclude body1="wrist2_link" body2="wrist3_link"/>
+        <exclude body1="wrist3_link" body2="finger_left"/>
+        <exclude body1="wrist3_link" body2="finger_right"/>
+    </contact>
+</mujoco>

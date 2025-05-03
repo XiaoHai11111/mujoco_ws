@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="dummy_gripper">
+  <mujoco>
+        <compiler
+         meshdir="../meshes/"
+         balanceinertia="true"
+         discardvisual="false" />
+  </mujoco>
+  
+  <link name="world"/>
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin rpy="0.0 0 0" xyz="0.0 0.0 0.015"/>
+  </joint>
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.06352313 0.00005052 0.01001277"
+        rpy="0 0 0" />
+      <mass
+        value="4.47348191" />
+      <inertia
+        ixx="0.02026074"
+        ixy="-0.00002236"
+        ixz="-0.00503211"
+        iyy="0.03749287"
+        iyz="0.00000105"
+        izz="0.05047190" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="shoulder_link">
+    <inertial>
+      <origin
+        xyz="0.00565647 0.00561557 0.01103681"
+        rpy="0 0 0" />
+      <mass
+        value="0.1407715" />
+      <inertia
+        ixx="0.00005229"
+        ixy="0.00001930"
+        ixz="0.00001380"
+        iyy="0.00006103"
+        iyz="0.00000886"
+        izz="0.00008635" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/shoulder_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/shoulder_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0865"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="shoulder_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="12"
+      velocity="5" />
+  </joint>
+  <link
+    name="upper_link">
+    <inertial>
+      <origin
+        xyz="0.00158183 -0.07501807 -0.00456731"
+        rpy="0 0 0" />
+      <mass
+        value="1.43844277" />
+      <inertia
+        ixx="0.00507361"
+        ixy="0.00002388"
+        ixz="0.00000254"
+        iyy="0.00046490"
+        iyz="-0.00003900"
+        izz="0.00501055" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/upper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/upper_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0.035 0 0.0275"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="shoulder_link" />
+    <child
+      link="upper_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.3"
+      upper="1.57"
+      effort="7.2"
+      velocity="5" />
+  </joint>
+  <link
+    name="forearm_link">
+    <inertial>
+      <origin
+        xyz="0.05703139 -0.01762985 -0.00275017"
+        rpy="0 0 0" />
+      <mass
+        value="0.30020083" />
+      <inertia
+        ixx="0.00009108"
+        ixy="0.00001444"
+        ixz="0.00003605"
+        iyy="0.00022161"
+        iyz="-0.00000225"
+        izz="0.00023032" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/forearm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/forearm_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0 -0.146 0"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="upper_link" />
+    <child
+      link="forearm_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.3"
+      upper="1.57"
+      effort="7.2"
+      velocity="5" />
+  </joint>
+  <link
+    name="wrist1_link">
+    <inertial>
+      <origin
+        xyz="-0.00006733 0.00046890 0.07837243"
+        rpy="0 0 0" />
+      <mass
+        value="0.28251937" />
+      <inertia
+        ixx="0.00046397"
+        ixy="-0.00000018"
+        ixz="-0.00000024"
+        iyy="0.00042945"
+        iyz="0.00002835"
+        izz="0.00007048" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/wrist1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/wrist1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4"
+    type="revolute">
+    <origin
+      xyz="0.052 -0.0115 0"
+      rpy="1.5708 0 -3.1416" />
+    <parent
+      link="forearm_link" />
+    <child
+      link="wrist1_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="3.6"
+      velocity="5" />
+  </joint>
+  <link
+    name="wrist2_link">
+    <inertial>
+      <origin
+        xyz="0.04395300 0.00000000 -0.00234400"
+        rpy="0 0 0" />
+      <mass
+        value="0.11168657" />
+      <inertia
+        ixx="0.00000983"
+        ixy="0.00000000"
+        ixz="0.00000532"
+        iyy="0.00004722"
+        iyz="0.00000000"
+        izz="0.00004525" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/wrist2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/wrist2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint5"
+    type="revolute">
+    <origin
+      xyz="0 0 0.134"
+      rpy="1.5708 -1.5708 3.1416" />
+    <parent
+      link="wrist1_link" />
+    <child
+      link="wrist2_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.1"
+      upper="2.1"
+      effort="3.6"
+      velocity="5" />
+  </joint>
+  <link
+    name="wrist3_link">
+    <inertial>
+      <origin
+        xyz="0.00112758 -0.00037575 -0.04507409"
+        rpy="0 0 0" />
+      <mass
+        value="0.02694263" />
+      <inertia
+        ixx="0.00000822"
+        ixy="-0.00000005"
+        ixz="0.00000003"
+        iyy="0.00000501"
+        iyz="0.00000003"
+        izz="0.00000741" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/FlexGripper.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/FlexGripper.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint6"
+    type="revolute">
+    <origin
+      xyz="0.13725 0 0"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="wrist2_link" />
+    <child
+      link="wrist3_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.28"
+      upper="6.28"
+      effort="0.6"
+      velocity="5" />
+  </joint>
+  <link
+    name="finger_left">
+    <inertial>
+      <origin
+        xyz="0.00056483 -0.00903053 -0.00450228"
+        rpy="0 0 0" />
+      <mass
+        value="0.03003680" />
+      <inertia
+        ixx="0.00001061"
+        ixy="-0.00000006"
+        ixz="-0.00000005"
+        iyy="0.00000727"
+        iyz="0.00000005"
+        izz="0.00000755" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/finger_left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/finger_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="finger_left_joint"
+    type="revolute">
+    <origin
+      xyz="0.00025007 0.00925 -0.03825"
+      rpy="0 0 0" />
+    <parent
+      link="wrist3_link" />
+    <child
+      link="finger_left" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0.78"
+      effort="0.2"
+      velocity="3" />
+  </joint>
+
+  <link
+    name="finger_right">
+    <inertial>
+      <origin
+        xyz="0.00056483 0.00925188 -0.00450332"
+        rpy="0 0 0" />
+      <mass
+        value="0.03003680" />
+      <inertia
+        ixx="0.00001061"
+        ixy="-0.00000006"
+        ixz="-0.00000004"
+        iyy="0.00000726"
+        iyz="0.00000002"
+        izz="0.00000766" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/finger_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://dummy_gripper/meshes/finger_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="finger_right_joint"
+    type="revolute">
+    <origin
+      xyz="0.00025007 -0.00925 -0.03825"
+      rpy="0 0 0" />
+    <parent
+      link="wrist3_link" />
+    <child
+      link="finger_right" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0.78"
+      effort="0.2"
+      velocity="3" />
+    <mimic 
+      joint="finger_left_joint" 
+      multiplier="1" 
+      offset="0" />
+  </joint>
+
+
+</robot>
