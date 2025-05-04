@@ -15,8 +15,9 @@ import numpy as np
 
 class Test(mujoco_viewer.CustomViewer):
     def __init__(self, path):
-        super().__init__(path, 3, azimuth=-45, elevation=-30)
+        super().__init__(path, 1.5, azimuth=135, elevation=-30)
         self.path = path
+
     
     def runBefore(self):
         self.end_effector_id = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_BODY, 'wrist3_link')
@@ -32,3 +33,4 @@ class Test(mujoco_viewer.CustomViewer):
 
 test = Test("../dummy_description/mjcf/scene.xml")
 test.run_loop()
+# <key qpos='0.982613 -0.000582215 0.000143164 3.7986e-07 6.40952e-05 3.17941e-08 1.68279e-08 -1.75817e-08'/>

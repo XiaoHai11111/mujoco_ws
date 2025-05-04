@@ -1,3 +1,14 @@
+"""
+    File Name: ctrl_ee_pin.py
+    Author: XiaoHai
+    Date: 2025-05-03
+    Version: 1.0
+    Description:加载dummy的urdf描述文件,使用pinocchio库进行运动学逆解,
+        控制机械臂沿着z轴运动
+    Usage:通过以下指令运行代码
+        $ conda activate mujoco_py
+        $ python ctrl_ee_pin.py
+"""
 import mujoco
 import numpy as np
 import glfw

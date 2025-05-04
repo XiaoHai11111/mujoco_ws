@@ -1,7 +1,7 @@
 /**
  * *********************************************************
  *
- * @file: inverse_dynamics_demo.cpp
+ * @file: dummy_inverse_dynamics.cpp
  * @brief: 加载urdf文件，通过转动惯量等计算关节力矩，并计算末端执行器的正运动学，测试demo，
  * @author: xiaohai（tetrabot）
  * @date: 2025-4-28
